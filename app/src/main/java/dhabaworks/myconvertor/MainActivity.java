@@ -2,13 +2,19 @@ package dhabaworks.myconvertor;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
 
+    Spinner ChooseCategory;
+    Spinner ShowFromUnits;
+    Spinner ShowToUnits;
 
 
     @Override
@@ -16,6 +22,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ChooseCategory = (Spinner)findViewById(R.id.spinnerCategory);
+        ArrayAdapter adapter0 = ArrayAdapter.createFromResource(this,R.array.category_array,R.layout.my_spinner);
+        ChooseCategory.setAdapter(adapter0);
+        ChooseCategory.setOnItemSelectedListener(this);
+
+
+        ShowFromUnits = (Spinner)findViewById(R.id.spinnerFromUnits);
+        ShowToUnits = (Spinner)findViewById(R.id.spinnerToUnits);
 
 
 
@@ -43,5 +57,61 @@ public class MainActivity extends ActionBarActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if(position==0){
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.distance_array,R.layout.my_spinner);
+            ShowFromUnits.setAdapter(adapter);
+
+            ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.distance_array,R.layout.my_spinner);
+            ShowToUnits.setAdapter(adapter1);
+        }
+
+        if(position==1){
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.area_array,R.layout.my_spinner);
+            ShowFromUnits.setAdapter(adapter);
+
+            ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.area_array,R.layout.my_spinner);
+            ShowToUnits.setAdapter(adapter1);
+        }
+        if(position==2){
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.vol_array,R.layout.my_spinner);
+            ShowFromUnits.setAdapter(adapter);
+
+            ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.vol_array,R.layout.my_spinner);
+            ShowToUnits.setAdapter(adapter1);
+        }
+
+        if(position==3){
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.pressure_array,R.layout.my_spinner);
+            ShowFromUnits.setAdapter(adapter);
+
+            ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.pressure_array,R.layout.my_spinner);
+            ShowToUnits.setAdapter(adapter1);
+        }
+
+        if(position==4){
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.temp_array,R.layout.my_spinner);
+            ShowFromUnits.setAdapter(adapter);
+
+            ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.temp_array,R.layout.my_spinner);
+            ShowToUnits.setAdapter(adapter1);
+        }
+
+        if(position==5){
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.currency_array,R.layout.my_spinner);
+            ShowFromUnits.setAdapter(adapter);
+
+            ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.currency_array,R.layout.my_spinner);
+            ShowToUnits.setAdapter(adapter1);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
